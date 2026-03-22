@@ -107,6 +107,12 @@ class FTA(nn.Module):
         elif self.spillover_mode == "derive_from_tile_width":
             spillover_val = tile_w_py * (1.5 ** float(self.spillover_base))
         elif self.spillover_mode == "raw" or self.spillover_mode is None:
+            if self.spillover_base < 0:
+                raise ValueError(
+                    f"spillover_base must be >= 0 when "
+                    f"spillover_mode is 'raw' or None, "
+                    f"got {self.spillover_base}"
+                )
             spillover_val = float(self.spillover_base)
         else:
             raise ValueError(

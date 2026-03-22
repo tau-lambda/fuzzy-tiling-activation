@@ -83,6 +83,12 @@ class FTA(torch.nn.Module):
         elif spillover_mode == 'derive_from_tile_width':
             self._spillover = self._tile_width * 1.5**spillover_base
         elif spillover_mode == "raw" or spillover_mode is None:
+            if spillover_base < 0:
+                raise ValueError(
+                    f"spillover_base must be >= 0 when "
+                    f"spillover_mode is 'raw' or None, "
+                    f"got {spillover_base}"
+                )
             self._spillover = spillover_base
         else:
             raise ValueError(
