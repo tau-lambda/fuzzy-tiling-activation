@@ -8,13 +8,16 @@ version = "0.1.0"
 description = "Fuzzy Tiling Activation (FTA) for PyTorch and JAX/Flax"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.9"
+requires-python = ">=3.10.16"
 keywords = ["activation-function", "neural-network", "reinforcement-learning", "fuzzy-tiling"]
 authors = [{name = "Ty Lazar"}]
 
 [project.optional-dependencies]
 torch = ["torch>=2.1.1"]
 jax = ["jax>=0.6.2", "flax>=0.10.7"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["fta"]
 
 [project.urls]
 Repository = "https://github.com/tau-lambda/fuzzy-tiling-activation"
