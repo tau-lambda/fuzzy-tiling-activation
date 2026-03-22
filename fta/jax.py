@@ -169,4 +169,8 @@ class FTA(nn.Module):
     @property
     def num_output_tiles(self) -> int:
         """Total number of tiles (including the rightmost linear one)"""
-        return int(self.num_tiles) + 1
+        if self.num_tiles is not None:
+            return int(self.num_tiles) + 1
+        tile_w = float(self.tile_width)
+        num_core = int(2.0 * float(self.bound) / tile_w)
+        return num_core + 1
